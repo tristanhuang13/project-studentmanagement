@@ -5,16 +5,16 @@ public class StudentDataBaseApp {
 	private Scanner console = new Scanner(System.in);
 	
 	public Student getStudent(String name) {
-		Student student = new Student();
 		for (int i = 0; i < array.size(); i++) {
 			Student s = array.get(i);
 			if (s.name().equals(name)) {
 				return s;
 			}
 		}
-		return student;
+		return array.get(0);
 	}
 	public void newStudent() {
+		System.out.println("Enter student data: ");
 		Student s = new Student();
 		s.getCourses(console);
 		s.balance();
@@ -42,5 +42,24 @@ public class StudentDataBaseApp {
 	public void balance(String name) {
 		Student s = getStudent(name);
 		s.balance();
+	}
+	public void removeCourse(String name) {
+		Student s = getStudent(name);
+		s.removeCourse(console);
+	}
+	public void removeStudent(String name) {
+		for (int i = 0; i < array.size(); i++) {
+			if (array.get(i).name().equals(name)) {
+				array.remove(i);
+			}
+		}
+	}
+	public void display() {
+		System.out.print("[" + array.get(0).name());
+		for (int i = 1; i < array.size(); i++) {
+			Student s = array.get(i);
+			System.out.print(", " + s.name());
+		}
+		System.out.print("]");
 	}
 }
