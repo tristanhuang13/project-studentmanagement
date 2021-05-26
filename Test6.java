@@ -1,51 +1,61 @@
 import java.util.*;
 
 public class Test6 {
+	// test6 uses studentdatabase to access each student and changes a student from the list
+	public static StudentDataBaseApp studentDatabase = new StudentDataBaseApp();
 	public static void main(String[] args) {
 		Scanner console = new Scanner(System.in);
 		System.out.println("Enter number of students: ");
 		String number = console.nextLine();
 		int number1 = Integer.parseInt(number);
 		int count = 0;
-		StudentDataBaseApp studentDatabase = new StudentDataBaseApp();
+		// creates a certain number of new students
 		while (count < number1) {
 			studentDatabase.newStudent();
 			count = count + 1;
 		}
-		String letter = "";
+		// gets name from user and checks to see if it is equal to Q
 		String name = "";
 		while (!name.equals("Q")) {
 			System.out.print("Enter student's name: ");
 			name = console.nextLine();
+			String letter = "";
 			if (name.equals("Q")) {
 				break;
 			}
+			// for a certain person, the loop can either use studentdatabase to change courses, print ID, pay tuition, create and remove students, or print student
 			while (!letter.equals("Q")) {
 				System.out.println("Enter a to change courses, b to get ID, c to payTuition, d to create or remove students, e to printStudent, f to display, Q to quit.");
 				letter = console.nextLine();
+				// changes courses for someone in the list of people
 				if (letter.equals("a")) {
 					changeCourses(name);
 				}
+				// gets a person from a list of people and prints their ID
 				else if (letter.equals("b")) {
 					studentDatabase.getID(name);
 				}
+				// allows user to pay for their tuition
 				else if (letter.equals("c")) {
 					payTuition1(name);
 				}
+				// allows user to create and remove students
 				else if (letter.equals("d")) {
 					addStudent(name);
 				}
+				// prints student data
 				else if (letter.equals("e")) {
 					studentDatabase.printStudent(name);
 				}
+				// displays all students
 				else if (letter.equals("f")) {
 					studentDatabase.display();
 				}
 			}
 		}
 	}
+	// allows user to change courses and print student
 	public static void changeCourses(String name) {
-		StudentDataBaseApp studentDatabase = new StudentDataBaseApp();
 		String letter = "";
 		Scanner console = new Scanner(System.in);
 		while (!letter.equals("Q")){
@@ -62,8 +72,8 @@ public class Test6 {
 			}
 		}
 	}
+	// allows user to add a new student or remove the student entered
 	public static void addStudent(String name) {
-		StudentDataBaseApp studentDatabase = new StudentDataBaseApp();
 		String letter = "";
 		Scanner console = new Scanner(System.in);
 		System.out.println("Enter a to add student, b to remove student");
@@ -75,8 +85,8 @@ public class Test6 {
 			studentDatabase.removeStudent(name);
 		}
 	}
+	// allows user to pay for tuition, view balance, and print student
 	public static void payTuition1(String name) {
-		StudentDataBaseApp studentDatabase = new StudentDataBaseApp();
 		String letter = "";
 		Scanner console = new Scanner(System.in);
 		System.out.print("Your balance is: ");
