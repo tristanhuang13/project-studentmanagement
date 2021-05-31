@@ -19,6 +19,7 @@ public class StudentDataBaseApp {
 		System.out.println("Enter student data: ");
 		Student s = new Student();
 		s.getCourses();
+		s.getClubs();
 		s.balance();
 		s.tuition(console);
 		s.getEmergency(console);

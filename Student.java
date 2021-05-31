@@ -5,6 +5,7 @@ public class Student {
 	private String name;
 	private String idNumber;
 	private ArrayList<String> courses = new ArrayList<String>();
+	private ArrayList<String> clubs = new ArrayList<String>();
 	private String year;
 	private int balance;
 	private int amountPaid;
@@ -14,8 +15,10 @@ public class Student {
 	private boolean isAthlete;
 	private String[] sportOption;
 	private Scanner console1;
+	private String[] clubOption;
 	// Constructor prompt user to enter student name and year
 	public Student() {
+		clubOption = new String[] {"Speech and Debate", "DECA", "Robotics", "Track and Field", "Mock Trial", "Model UN"};
 		courseOption = new String[] {"US History", "Government/Economics", "AP Computer Science", "English 11H", "AP Biology", "Precalculus"};
 		sportOption = new String[] {"Basketball", "Football", "Soccer", "Volleyball", "Tennis"};
 		Scanner console = new Scanner(System.in);
@@ -139,6 +142,27 @@ public class Student {
 			}
 		}
 	}
+	// add clubs the the clubs arraylist
+	public void getClubs() {
+		String clubs1 = "";
+		while(!clubs1.equals("Q")) {
+			System.out.println("Enter clubs:  Speech and Debate, DECA, Robotics, Track and Field, Mock Trial, Model UN, and Q to quit");
+			clubs1 = console1.nextLine();
+			boolean b = false;
+			for (int i = 0; i < clubOption.length; i++) {
+				if (clubOption[i].equals(clubs1)) {
+					b = true;
+				}
+			}
+			if (!clubs.equals("Q") && b) {
+				clubs.add(clubs1);
+			}
+			else if (!b && !clubs1.equals("Q")) {
+				System.out.println("This clubs is not available. Please select another clubs.");
+			}
+		}
+	}
+	// get the contact information in an array	
 	public void getEmergency(Scanner console) {
 		console.nextLine();
 		System.out.print("Enter phone number: ");
@@ -149,12 +173,13 @@ public class Student {
 		emergency[2] = console.nextLine();
 		System.out.println(emergency[0] + " " + emergency[1] + " " + emergency[2]);
 	}
-	// Show Status
+	// Show Status; id, balance, courses, clubs, athlete, and emergency
 	public void showStatus() {
 		System.out.println("Current student status is: ");
 		System.out.println(idNumber);
 		System.out.println("balance = " + balance + " amount paid = " + amountPaid);
 		System.out.println("Courses = " + courses);
+		System.out.println("Clubs = " + clubs);
 		if (isAthlete) {
 			System.out.println("This person is an athlete.");
 		}
